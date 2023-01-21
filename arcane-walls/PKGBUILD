@@ -1,0 +1,19 @@
+# Maintainer: XTC <xtc@fuxnews.com>
+pkgname=arcane-walls
+_pkgname=arcane-walls
+pkgver=1.0
+pkgrel=2
+pkgdesc="Arcane wallpapers collected from wallhaven.cc"
+arch=('any')
+url="https://github.com/protoblaster/arcane-walls"
+makedepends=('git')
+provides=("${pkgname}")
+options=(!strip !emptydirs)
+source=(${pkgname}::"git+https://github.com/protoblaster/${_pkgname}")
+sha256sums=('SKIP')
+package() {
+	cd "${srcdir}/${pkgname}"
+	install -d "${pkgdir}/usr/share/backgrounds/${_pkgname}"
+	install -m644 ${srcdir}/${pkgname}/*.png "${pkgdir}/usr/share/backgrounds/${_pkgname}"
+	install -m644 ${srcdir}/${pkgname}/*.jpg "${pkgdir}/usr/share/backgrounds/${_pkgname}"
+}

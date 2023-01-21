@@ -1,0 +1,19 @@
+# Maintainer: XTC <protoblaster11@protonmail.com>
+pkgname=random-walls
+_pkgname=random-walls
+pkgver=1.0
+pkgrel=1
+pkgdesc="Random wallpapers collected from too many places to list"
+arch=('any')
+url="https://github.com/protoblaster/xwalls"
+makedepends=('git')
+provides=("${pkgname}")
+options=(!strip !emptydirs)
+source=(${pkgname}::"git+https://github.com/protoblaster/xwalls")
+sha256sums=('SKIP')
+package() {
+	cd "${srcdir}/${pkgname}"
+	install -d "${pkgdir}/usr/share/backgrounds/${_pkgname}"
+#	install -m644 ${srcdir}/${pkgname}/*.png "${pkgdir}/usr/share/backgrounds/${_pkgname}"
+	install -m644 ${srcdir}/${pkgname}/*.jpg "${pkgdir}/usr/share/backgrounds/${_pkgname}"
+}
